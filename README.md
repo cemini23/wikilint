@@ -1,5 +1,8 @@
 # wikilint
 
+[![CI](https://github.com/cemini23/wikilint/actions/workflows/ci.yml/badge.svg)](https://github.com/cemini23/wikilint/actions/workflows/ci.yml)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+
 Lint **agent-maintained markdown wikis** — orphans, bidirectional `related:` gaps, dangling links, missing `@path` mentions, frontmatter quality, stale `[NEEDS VERIFICATION]` tags.
 
 Stdlib-only. No PyYAML dependency. Designed for CI on LLM-curated knowledge bases.
