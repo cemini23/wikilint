@@ -1,0 +1,36 @@
+name: wikilint
+description: Lint agent-maintained markdown wikis
+branding:
+  icon: book
+  color: green
+
+inputs:
+  wiki-dir:
+    description: Path to wiki root directory
+    required: false
+    default: wiki
+  strict:
+    description: Fail on warnings
+    required: false
+    default: "false"
+  verify-age-days:
+    description: Stale NEEDS VERIFICATION threshold in days
+    required: false
+    default: "7"
+
+runs:
+  using: composite
+  steps:
+    - uses: actions/setup-python@v5
+      with:
+        python-version: "3.12"
+    - run: pip install "${{ github.action_path }}"
+      shell: bash
+    - run: |
+        ARGS=( "${{ inputs.wiki-dir }}" )
+        if [ "${{ inputs.strict }}" = "true" ]; then
+          ARGS+=( --strict )
+        fi
+        ARGS+=( --verify-age-days "${{ inputs.verify-age-days }}" )
+        wikilint "${ARGS[@]}"
+      shell: bash
